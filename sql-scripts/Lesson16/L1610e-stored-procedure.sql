@@ -68,5 +68,6 @@ SELECT * FROM dbo.MusicGroups WHERE Name = 'LoveBirds'
 SELECT * FROM dbo.Artists WHERE FirstName = 'Barry'
 
 SELECT * FROM dbo.MusicGroups mg
-INNER JOIN dbo.ArtistMusicGroup artmg ON mg.MusicGroupId = artmg.MusicGroupMusicId
+INNER JOIN dbo.ArtistMusicGroup artmg ON mg.MusicGroupId = artmg.MusicGroupsMusicGroupId
 INNER JOIN dbo.Artists art ON artmg.MembersArtistId = art.ArtistId
+WHERE Name = 'LoveBirds'
