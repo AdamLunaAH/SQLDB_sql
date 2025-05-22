@@ -20,7 +20,7 @@ CREATE OR ALTER PROC dbo.usp_Actors AS
     ORDER BY 2
 
 --optional return code indicating success
-RETURN 0; 
+RETURN 1; 
 GO
 
 DECLARE @ret_code INT;  
