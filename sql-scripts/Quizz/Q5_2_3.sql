@@ -1,3 +1,6 @@
+USE [sql-music];
+GO
+
 --Q4.2
 SELECT 'Antal grupper' as [Rubrik], COUNT(*) as [Antal] FROM dbo.MusicGroups
 UNION

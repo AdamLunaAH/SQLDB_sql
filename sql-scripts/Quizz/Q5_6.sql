@@ -1,3 +1,6 @@
+USE [sql-music];
+GO
+
 --Q4.6
 --Test it
 SELECT  DATEDIFF (YEAR, MAX(BirthDay), GETDATE()), MAX(BirthDay),

@@ -1,3 +1,6 @@
+USE [sql-music];
+GO
+
 --Q4.1
 --Find all Albums released aftar 1980 that contains word Purple
 SELECT * FROM dbo.Albums WHERE ReleaseYear > 1980 AND Name LIKE '%Purple%'
