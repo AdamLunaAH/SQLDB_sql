@@ -1,4 +1,4 @@
-USE musicefc;
+USE [sql-musicefc];
 GO
 
 --Create some users
@@ -7,17 +7,17 @@ CREATE USER Albus WITHOUT LOGIN;
 CREATE USER Gandalf WITHOUT LOGIN;
 
 --Create a role for common users
-CREATE ROLE musicefcUsers;
+CREATE ROLE musicUsers;
 
 --SELECT only rights, nothing can be damaged
-GRANT SELECT ON dbo.Albums to musicefcUsers;
-GRANT SELECT ON dbo.Artists to musicefcUsers;
-GRANT SELECT ON dbo.MusicGroups to musicefcUsers;
+GRANT SELECT ON dbo.Albums to musicUsers;
+GRANT SELECT ON dbo.Artists to musicUsers;
+GRANT SELECT ON dbo.MusicGroups to musicUsers;
 
-ALTER ROLE musicefcUsers ADD MEMBER Hermione;
-ALTER ROLE musicefcUsers ADD MEMBER Albus;
-ALTER ROLE musicefcUsers ADD MEMBER Gandalf;
-ALTER ROLE musicefcUsers ADD MEMBER Peregrin;
+ALTER ROLE musicUsers ADD MEMBER Hermione;
+ALTER ROLE musicUsers ADD MEMBER Albus;
+ALTER ROLE musicUsers ADD MEMBER Gandalf;
+ALTER ROLE musicUsers ADD MEMBER Peregrin;
 
 --Impersonate the users
 EXECUTE AS USER = 'Albus';  -- try all different, Albus, Gandalf, Hermoine
@@ -26,26 +26,11 @@ SELECT * FROM dbo.Artists;
 
 --But not this
 INSERT INTO dbo.Artists VALUES
-(NEWID(), 'Mary', 'Doe', NULL, NULL);
+(NEWID(), 'Mary', 'Doe', NULL, 1);
 
 UPDATE dbo.Artists
 SET FirstName = 'Mary'
-WHERE ArtistId = '348d2195-37ab-4c8b-f351-08db56e0cbf8';
+WHERE LastName = 'Doe';
 
 REVERT;
 
---Impersonate Peregrin
-EXECUTE AS USER = 'Peregrin'; 
---This works
-SELECT * FROM dbo.Artists;
-
---and this, as Peregrin as USER has been assigned INSERT rights
-INSERT INTO dbo.Artists VALUES
-(NEWID(), 'Mary', 'Doe', NULL, NULL);
-
---But not this
-UPDATE dbo.Artists
-SET FirstName = 'Mary'
-WHERE ArtistId = '348d2195-37ab-4c8b-f351-08db56e0cbf8';
-
-REVERT;

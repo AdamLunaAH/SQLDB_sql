@@ -29,6 +29,9 @@ ALTER SERVER ROLE ServerViewOnly ADD MEMBER Frodo;
 --Now, log in as Frodo in a separate Azure Data Studio Window
 --Run below script in Frodo Window
 /*
+USE[sql-music]
+GO
+
 UPDATE dbo.Albums
 SET Name = 'hello'
 */

@@ -1,4 +1,4 @@
-USE musicefc;
+USE [sql-music];
 GO
 
 --Impersonate the users
