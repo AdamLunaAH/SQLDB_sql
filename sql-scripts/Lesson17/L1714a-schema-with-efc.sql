@@ -23,3 +23,4 @@ SELECT
    ALTER USER [gstUser] WITH LOGIN = [gstLogin];
 
 8 login to the database as a gstLogin and verify that you can only Select the View created. No tables should have access
+*/
