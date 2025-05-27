@@ -1,4 +1,4 @@
-USE musicefc;
+USE [sql-music];
 GO
 
 --create a schema that I will assign permissons to role
@@ -20,8 +20,8 @@ GO
 
 
 --Create a role for common users
-CREATE ROLE musicefcUsers;
+CREATE ROLE musicUsers;
 
---SELECT only rights to Role musicefcUsers to everything in SCHEMA usr
-GRANT SELECT, EXECUTE ON SCHEMA::usr to musicefcUsers;
+--SELECT only rights to Role musicUsers to everything in SCHEMA usr
+GRANT SELECT, EXECUTE ON SCHEMA::usr to musicUsers;
 

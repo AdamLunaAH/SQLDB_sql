@@ -1,4 +1,4 @@
-USE musicefc;
+USE [sql-music];
 GO
 
 --Create a login
@@ -7,10 +7,10 @@ CREATE LOGIN Harry WITH PASSWORD=N'pa$$Word1',
     CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF;
 
 --Create a user for the login
-CREATE USER HarryUser FROM LOGIN Harry;
+CREATE USER harryUser FROM LOGIN Harry;
 
---Add HarryUser to an existing role
-ALTER ROLE db_datareader ADD MEMBER HarryUser;
+--Add harryUser to an existing role
+ALTER ROLE db_datareader ADD MEMBER harryUser;
 
 --Now, log in as Harry in a separate Azure Data Studio Window
 --You will have only read access, and cannot do below
@@ -31,5 +31,5 @@ WHERE type_desc = 'SQL_USER'
 
 
 --Cleanup
-DROP USER HarryUser;
+DROP USER harryUser;
 DROP LOGIN Harry;

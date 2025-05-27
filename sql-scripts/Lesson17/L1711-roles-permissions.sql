@@ -1,12 +1,12 @@
-USE musicefc;
+USE [sql-music];
 GO
 
 --Programatically determine if a user is a mamber of a role
 EXECUTE AS USER = 'Peregrin'; 
 --EXECUTE AS USER = 'Albus'; 
 
-IF (SELECT IS_MEMBER('musicefcUsers')) = 1
-       SELECT 'Member of the musicefcUsers';
+IF (SELECT IS_MEMBER('musicUsers')) = 1
+       SELECT 'Member of the musicUsers';
 
 --Show all roles and their members
 SELECT DP1.name AS DatabaseRoleName,  ISNULL (DP2.name, 'No members') AS DatabaseUserName   
@@ -35,5 +35,5 @@ DROP USER Hermione;
 DROP USER Albus;
 DROP USER Gandalf;
 DROP USER Peregrin;
-DROP ROLE musicefcUsers;
+DROP ROLE musicUsers;
 */

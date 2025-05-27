@@ -1,3 +1,6 @@
+USE [sql-music];
+GO
+
 --Q4.8
 --Find the music group with most albums sold
 SELECT TOP 5 g.MusicGroupId, g.Name, SUM (a.CopiesSold) [copies sold] FROM dbo.MusicGroups g 
@@ -16,7 +19,7 @@ SELECT s.MusicGroupId FROM (
 --use the scalar as a sub query to list all artists in the music group with most
 --albums sold
 SELECT * FROM dbo.Artists a 
-INNER JOIN dbo.csArtistcsMusicGroup amg ON amg.MembersArtistId = a.ArtistId
+INNER JOIN dbo.ArtistMusicGroup amg ON amg.MembersArtistId = a.ArtistId
 WHERE amg.MusicGroupsMusicGroupId = (
     SELECT s.MusicGroupId FROM (
         SELECT TOP 1 g.MusicGroupId, g.Name, SUM (a.CopiesSold) [copies sold] FROM dbo.MusicGroups g 

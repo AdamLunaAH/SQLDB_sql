@@ -1,4 +1,4 @@
-USE musicefc;
+USE [sql-music];
 GO
 
 --Create some users
@@ -6,9 +6,9 @@ CREATE USER Hermione WITHOUT LOGIN;
 CREATE USER Albus WITHOUT LOGIN;
 CREATE USER Gandalf WITHOUT LOGIN;
 
-ALTER ROLE musicefcUsers ADD MEMBER Hermione;
-ALTER ROLE musicefcUsers ADD MEMBER Albus;
-ALTER ROLE musicefcUsers ADD MEMBER Gandalf;
+ALTER ROLE musicUsers ADD MEMBER Hermione;
+ALTER ROLE musicUsers ADD MEMBER Albus;
+ALTER ROLE musicUsers ADD MEMBER Gandalf;
 
 --Impersonate the users
 EXECUTE AS USER = 'Hermione';  -- try all different, Albus, Gandalf, Hermoine
@@ -24,12 +24,12 @@ REVERT;
 
 --Cleanup
 REVERT;
-ALTER ROLE musicefcUsers DROP MEMBER Hermione;
-ALTER ROLE musicefcUsers DROP MEMBER Albus;
-ALTER ROLE musicefcUsers DROP MEMBER Gandalf;
-ALTER ROLE musicefcUsers DROP MEMBER HarryUser;
-ALTER ROLE musicefcUsers DROP MEMBER Peregrin;
-DROP ROLE musicefcUsers;
+ALTER ROLE musicUsers DROP MEMBER Hermione;
+ALTER ROLE musicUsers DROP MEMBER Albus;
+ALTER ROLE musicUsers DROP MEMBER Gandalf;
+ALTER ROLE musicUsers DROP MEMBER HarryUser;
+ALTER ROLE musicUsers DROP MEMBER Peregrin;
+DROP ROLE musicUsers;
 
 DROP USER Hermione;
 DROP USER Albus;

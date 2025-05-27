@@ -80,7 +80,7 @@ Write a stored procedure that inserts a Friend into the dbo.Friends
 FirstName, LastName should be mandatory parameters
 The created FriendId should be an OUTPUT parameter
 */
-
+GO
 CREATE OR ALTER PROC usp_InsertFriend
 
 @FirstName NVARCHAR(200),
@@ -104,3 +104,47 @@ SELECT * FROM dbo.Friends WHERE FirstName = 'Hola'
 Modify the stored procedure so also an Address can be added when creating a Friend
 (Street, ZipCode, Country)
 */
+
+GO
+CREATE OR ALTER PROC usp_InsertAddress
+
+@Street NVARCHAR(200),
+@ZipCode INT,
+@City NVARCHAR(200),
+@Country NVARCHAR(200),
+
+@AddressId uniqueidentifier OUTPUT AS
+
+SET @AddressId = NEWID();
+
+INSERT INTO dbo.Addresses (AddressId, Street, ZipCode, City, Country, Seeded)
+VALUES (@AddressId, @Street, @ZipCode, @City, @Country, 0)
+GO
+
+
+CREATE OR ALTER PROC usp_CreateFriendWithAddress
+    @FirstName NVARCHAR(200),
+    @LastName NVARCHAR(200),
+    @Street NVARCHAR(200),
+    @ZipCode INT,
+    @City NVARCHAR(200),
+    @Country NVARCHAR(200),
+
+    @FriendId uniqueidentifier=NULL OUTPUT,
+    @AddressId uniqueidentifier=NULL OUTPUT AS
+
+    EXEC usp_InsertFriend @FirstName, @LastName, @FriendId OUTPUT;
+    EXEC usp_InsertAddress @Street, @ZipCode, @City, @Country, @AddressId OUTPUT;
+
+    UPDATE dbo.Friends
+    SET AddressId = @AddressId
+    WHERE FriendId = @FriendId
+GO
+
+
+
+EXEC usp_CreateFriendWithAddress 'Hola', 'Bandola', 'Ringvagen', 12312, 'Gnarp', 'Sweden';
+
+SELECT * FROM dbo.Friends f
+INNER JOIN dbo.Addresses a ON f.AddressId = a.AddressId
+WHERE FirstName = 'Hola'
