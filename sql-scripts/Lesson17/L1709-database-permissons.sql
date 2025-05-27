@@ -6,4 +6,5 @@ SELECT  class_desc AS PermissionType,
  AS ObjectName,
         permission_name, state_desc, USER_NAME(grantee_principal_id)
 AS Grantee 
-FROM   sys.database_permissions;
+FROM   sys.database_permissions
+WHERE USER_NAME(grantee_principal_id) NOT IN ('public')

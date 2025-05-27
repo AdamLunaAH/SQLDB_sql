@@ -1,5 +1,10 @@
-USE [sql-musicefc];
+USE [sql-music];
 GO
+
+--cleanup
+--DROP USER Hermione;
+--DROP USER Albus;
+--DROP USER Gandalf;
 
 --Create some users
 CREATE USER Hermione WITHOUT LOGIN;

@@ -20,9 +20,9 @@ SELECT * FROM sys.sql_logins;
 --Assign Server permissions
 CREATE SERVER ROLE ServerViewOnly;
 
-GRANT  VIEW ANY DATABASE to ServerViewOnly; --see any database
-GRANT  CONNECT ANY DATABASE to ServerViewOnly; -- connect to any database
-GRANT  SELECT ALL USER SECURABLES to ServerViewOnly; -- only select
+GRANT CONNECT ANY DATABASE to ServerViewOnly; -- connect to any database
+GRANT VIEW ANY DATABASE to ServerViewOnly; --see any database
+GRANT SELECT ALL USER SECURABLES to ServerViewOnly; -- only select
 
 ALTER SERVER ROLE ServerViewOnly ADD MEMBER Frodo;
 
@@ -35,3 +35,7 @@ GO
 UPDATE dbo.Albums
 SET Name = 'hello'
 */
+
+--House keeping
+-- ALTER ROLE ServerViewOnly DROP MEMBER Frodo;
+-- DROP SERVER ROLE ServerViewOnly;
