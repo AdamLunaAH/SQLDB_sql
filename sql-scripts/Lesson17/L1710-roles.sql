@@ -21,8 +21,8 @@ GRANT SELECT ON dbo.MusicGroups to musicUsers;
 
 ALTER ROLE musicUsers ADD MEMBER Hermione;
 ALTER ROLE musicUsers ADD MEMBER Albus;
+--ALTER ROLE musicUsers DROP MEMBER Albus;
 ALTER ROLE musicUsers ADD MEMBER Gandalf;
-ALTER ROLE musicUsers ADD MEMBER Peregrin;
 
 --Impersonate the users
 EXECUTE AS USER = 'Albus';  -- try all different, Albus, Gandalf, Hermoine
