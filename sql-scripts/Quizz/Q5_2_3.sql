@@ -20,3 +20,4 @@ GO
 
 --Q4.3b
 SELECT * FROM vwDbContent FOR JSON AUTO
+SELECT * FROM vwDbContent FOR JSON PATH

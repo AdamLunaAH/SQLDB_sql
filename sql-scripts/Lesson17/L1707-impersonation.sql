@@ -23,7 +23,6 @@ USE [sql-music];
 GO
 
 --Here I comeback to being a sa system user, done in master
-USE master;
 REVERT;
 
 SELECT USER AS UserName, SYSTEM_USER AS SystemUserName,
